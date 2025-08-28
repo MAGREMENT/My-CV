@@ -1,0 +1,8 @@
+:root {
+  --corner-radius: 5px;
+
+  --background: white;
+  --shadow: #555555;
+  --primary: #949986;
+  --secondary: #e5e5dc;
+}
