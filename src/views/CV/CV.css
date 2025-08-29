@@ -1,4 +1,5 @@
 .cv-container {
     aspect-ratio: 210 / 297;
     height: 86%;
+    overflow: hidden;
 }

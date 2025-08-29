@@ -19,15 +19,48 @@ function CoreInformationContener({title, children}) {
     </div>
 }
 
+function CoreInformation({data}) {
+    let feats = data?.feats ?? [];
+
+    return <div className='flex-col mt-10px'>
+        <p className='m-0 fs-650 fs-1-5rem'>{data?.title}</p>
+        <p className='m-0'>{`${data?.establishment} - ${data?.location}, ${data?.country}`}</p>
+        <ul className='m-0'>
+            {feats.map((f, i) => <li key={i}>{f}</li>)}
+        </ul>
+    </div>
+}
+
 export default function SquareRegionCVLayout({data}) {
+    let experiences = data?.experience ?? [];
+    let languages = data?.languages ?? [];
+
     return <div className="full-size flex-col">
         <div className='flex-grow flex-row'>
             <div className='flex-col w-40per'>
-                <div className='bg-secondary h-50px'>
+                <div className='bg-secondary h-70px'></div>
+                <div className='flex-grow flex-col bg-primary text-on-color'>
+                    <div className='w-full plr-20px -mt-30px'>
+                        <img className='w-full' src="/assets/random.jpg" alt="profile"></img>
+                    </div>
+                    <div class="flex-col h-full justify-around">
+                        <CoreInformationContener title="Profile">
+                            {data?.introduction}
+                        </CoreInformationContener>
+                        <CoreInformationContener title="Skills">
 
-                </div>
-                <div className='flex-grow flex-col bg-primary'>
+                        </CoreInformationContener>
+                        <CoreInformationContener title="Languages">
+                            {languages.map(l => {
+                                let value = "Beginner";
+                                if(l.value > 90) value = "Native";
+                                else if(l.value > 70) value = "Advanced";
+                                else if(l.value > 40) value = "Intermediate";
 
+                                return <p className='m-0'>{l.name + " : " + value}</p>
+                            })}
+                        </CoreInformationContener>
+                    </div>
                 </div>
             </div>
             <div className='flex-col flex-grow'>
@@ -38,10 +71,10 @@ export default function SquareRegionCVLayout({data}) {
                 </div>
                 <div className="flex-grow flex-col justify-around">
                     <CoreInformationContener title="Work Experience">
-                        <p>hi</p>
+                        {experiences.map(e => <CoreInformation data={e}/>)}
                     </CoreInformationContener>
                     <CoreInformationContener title="Education">
-                        <p>hi</p>
+                        
                     </CoreInformationContener>
                 </div>
             </div>
