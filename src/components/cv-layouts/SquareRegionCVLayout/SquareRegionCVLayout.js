@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 function BottomInformation({icon, text}){
-    return <div class="flex-row align-center">
+    return <div className="flex-row align-center">
         <FontAwesomeIcon className='mr-5px fs-1-5rem' icon={icon}/>
         <p className='m-0'>{text}</p>
     </div>
@@ -31,7 +31,7 @@ function CoreInformation({data}) {
     </div>
 }
 
-export default function SquareRegionCVLayout({data}) {
+export default function SquareRegionCVLayout({data, settings}) {
     let experiences = data?.experience ?? [];
     let languages = data?.languages ?? [];
 
@@ -43,7 +43,7 @@ export default function SquareRegionCVLayout({data}) {
                     <div className='w-full plr-20px -mt-30px'>
                         <img className='w-full' src="/assets/random.jpg" alt="profile"></img>
                     </div>
-                    <div class="flex-col h-full justify-around">
+                    <div className="flex-col h-full justify-around">
                         <CoreInformationContener title="Profile">
                             {data?.introduction}
                         </CoreInformationContener>

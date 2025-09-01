@@ -16,6 +16,10 @@
     width: 40%;
 }
 
+.max-w-full {
+    max-width: 100%;
+}
+
 .h-full {
     height: 100%
 }
@@ -30,6 +34,14 @@
 
 .h-70px {
     height: 70px;
+}
+
+.min-h-full {
+    min-height: 100%;
+}
+
+.min-h-0 {
+    min-height: 0;
 }
 
 .flex {
@@ -56,6 +68,10 @@
     justify-content: center;
 }
 
+.justify-safe-center {
+    justify-content: safe center;
+}
+
 .justify-between {
     justify-content: space-between;
 }
@@ -66,6 +82,10 @@
 
 .align-center {
     align-items: center;
+}
+
+.align-safe-center {
+    align-items: safe center;
 }
 
 .flex-grow {
@@ -129,6 +149,10 @@
     margin-bottom: 5px;
 }
 
+.p-20px {
+    padding: 20px;
+}
+
 .ptb-20px {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -185,4 +209,12 @@
 
 .border-b-1px {
     border-bottom: solid 1px;
+}
+
+.overflow-y {
+    overflow-y: auto;
+}
+
+.overflow-x {
+    overflow-x: auto;
 }
