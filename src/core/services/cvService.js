@@ -4,6 +4,8 @@ import { createContext } from 'react';
 
 const CVDataKey = "CV-Data-Key";
 
+const fonts = ["Poppins", "Finlandica"]
+
 export class CVService {
     constructor() {
         this.data = getOrInitFromLocalStorage(CVDataKey, defaultData)
@@ -19,6 +21,10 @@ export class CVService {
         return new Promise((resolve, reject) => {
             resolve(this.data);
         })
+    }
+
+    getFonts() {
+      return fonts;
     }
 }
 

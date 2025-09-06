@@ -12,10 +12,10 @@ function BottomInformation({icon, text}){
 
 function CoreInformationContener({title, children}) {
     return <div className='flex-col w-full'>
-        <div className='w-full border-b-1px border-color-primary'>
+        <div className='w-full border-b-1px border-color-primary mb-10px'>
             <p className='mt-0 ml-20px fs-1-5rem mb-5px'>{title}</p>
         </div>
-        <div className='ml-20px'>
+        <div className='ml-20px pr-10px'>
             {children}
         </div>
     </div>
@@ -25,7 +25,7 @@ function CoreInformation({data}) {
     let feats = data?.feats ?? [];
     let tr = useContext(TranslationServiceContext); 
 
-    return <div className='flex-col mt-10px'>
+    return <div className='flex-col mb-10px'>
         <p className='m-0 fs-650 fs-1-5rem'>{tr.t(data?.title)}</p>
         <p className='m-0'>{`${tr.t(data?.establishment)} - ${tr.t(data?.location)}, ${tr.t(data?.country)}`}</p>
         <ul className='m-0'>
@@ -62,7 +62,7 @@ export default function SquareRegionCVLayout({data, settings}) {
                                 else if(l.value > 70) value = "ADVANCED";
                                 else if(l.value > 40) value = "INTERMEDIATE";
 
-                                return <p key={i} className='m-0'>{tr.t(l.name) + " : " + tr.t(value)}</p>
+                                return <p key={i} className='m-0 mb-5px'>{tr.t(l.name) + " : " + tr.t(value)}</p>
                             })}
                         </CoreInformationContener>
                     </div>
