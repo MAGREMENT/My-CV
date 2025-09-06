@@ -10,19 +10,22 @@ import {
   Route,
 } from 'react-router-dom';
 
+import ServicesWrapper from './core/services/ServicesWrapper';
 import CV from './views/CV/CV';
 import Main from './views/Main/Main';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/app" element={<Main/>}>
-          <Route path="cv" element={<CV/>}></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ServicesWrapper>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/app" element={<Main/>}>
+            <Route path="cv" element={<CV/>}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ServicesWrapper>
   </React.StrictMode>
 );
 

@@ -16,6 +16,10 @@
     width: 40%;
 }
 
+.w-240px {
+    width: 240px;
+}
+
 .max-w-full {
     max-width: 100%;
 }
@@ -89,8 +93,11 @@
 }
 
 .flex-grow {
-    display: flex;
     flex-grow: 1;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
 }
 
 .rounded {
