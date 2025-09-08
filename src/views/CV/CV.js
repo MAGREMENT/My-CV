@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Label from '../../components/Label/Label';
 import { TranslationServiceContext } from '../../core/services/TranslationService';
 import {useReactToPrint} from "react-to-print";
+import Slider from '../../components/inputs/Slider/Slider';
 
 export default function CV() {
     let tr = useContext(TranslationServiceContext);
@@ -70,6 +71,7 @@ export default function CV() {
             </Label>
             <button onClick={() => setData(cvService.reset())}>Reset Data</button>
             <button onClick={reactToPrint}>{tr.t("TO_PDF")}</button>
+            <Slider min={0} max={100} value={0} increment={5}></Slider>
         </div>
     </div>
 }

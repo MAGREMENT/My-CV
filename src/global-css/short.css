@@ -164,6 +164,11 @@
     margin-bottom: 10px;
 }
 
+.mlr-5px {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .p-20px {
     padding: 20px;
 }
@@ -236,4 +241,15 @@
 
 .overflow-x {
     overflow-x: auto;
+}
+
+.grid-1-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.g-el-1-1 {
+    grid-row: 1;
+    grid-column: 1;
 }
