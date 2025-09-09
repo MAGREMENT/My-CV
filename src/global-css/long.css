@@ -1,0 +1,11 @@
+.basic-button {
+    outline: none !important;
+    padding: 12px 20px;
+    border-radius: var(--corner-radius);
+    background-color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-on-color);
+    border: none;
+    cursor: pointer;
+}

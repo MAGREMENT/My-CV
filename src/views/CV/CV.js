@@ -66,8 +66,8 @@ export default function CV() {
             <Label text={tr.t("SIZE")}>
                 <Slider min={20} max={100} value={settings.size} onChange={(e) => setSettings({...settings, size: e})}></Slider>
             </Label>
-            <button onClick={() => setData(cvService.reset())}>Reset Data</button>
-            <button onClick={reactToPrint}>{tr.t("TO_PDF")}</button>
+            <button className='basic-button mb-10px' onClick={() => setData(cvService.reset())}>Reset Data</button>
+            <button className='basic-button' onClick={reactToPrint}>{tr.t("TO_PDF")}</button>
         </div>
     </div>
 }
