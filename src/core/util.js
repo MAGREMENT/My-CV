@@ -5,3 +5,15 @@ export function getOrInitFromLocalStorage(key, defaultValue) {
         return defaultValue;
     } else return JSON.parse(stored);
 }
+
+export function countNumberOfCharactersFromNumber(n) {
+    let count = n >= 0 ? 1 : 2;
+
+    while(true) {
+        n = Math.trunc(n / 10);
+        if(n !== 0) count++;
+        else break;
+    }
+
+    return count;
+}

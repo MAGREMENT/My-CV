@@ -24,7 +24,6 @@ export class TranslationService {
     }
 
     setLanguage(lang) {
-        console.log(lang);
         if(!languages.includes(lang)) return;
 
         let data = this.data[lang];

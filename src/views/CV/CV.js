@@ -8,16 +8,18 @@ import Label from '../../components/Label/Label';
 import { TranslationServiceContext } from '../../core/services/TranslationService';
 import {useReactToPrint} from "react-to-print";
 import Slider from '../../components/inputs/Slider/Slider';
+import Select from '../../components/inputs/Select/Select';
 
 export default function CV() {
     let tr = useContext(TranslationServiceContext);
     const cvService = useContext(CVServiceContext);
 
-    const fonts = cvService.getFonts();
+    const fonts = cvService.getFonts().map(f => ({value:f, data:f}));
+    const languages = [{value:"en", data:"English"}, {value: "fr", data:"French"}]
 
     const [data, setData] = useState(null);
     const [settings, setSettings] = useState({
-        font: fonts[0],
+        font: fonts[0].value,
         size: 35
     })
     const [lang, setLang] = useState(tr.getLanguage());
@@ -38,7 +40,7 @@ export default function CV() {
     }
 
     const handleLangChange = (e) => {
-        tr.setLanguage(e.target.value);
+        tr.setLanguage(e);
         setLang(tr.getLanguage());
     }
 
@@ -56,22 +58,16 @@ export default function CV() {
                 <p className='fs-1-5rem fw-650 m-0'>{tr.t("SETTINGS")}</p>
             </div>
             <Label text={tr.t("FONT")}>
-                <select value={settings.font} onChange={(e) => setSettings({...settings, font: e.target.value})}>
-                    {fonts.map(f => <option value={f} key={f}>{f}</option>)}
-                </select>
+                <Select possibleValues={fonts} value={settings.font} onChange={(e) => setSettings({...settings, font: e})}></Select>
             </Label>
             <Label text={tr.t("LANGUAGE")}>
-                <select value={lang} onChange={handleLangChange}>
-                    <option value="fr">French</option>
-                    <option value="en">English</option>
-                </select>
+                <Select possibleValues={languages} value={lang} onChange={handleLangChange}></Select>
             </Label>
             <Label text={tr.t("SIZE")}>
-                <input  type="range" min="20" max="100" value={settings.size} onChange={(e) => setSettings({...settings, size: e.target.value})}></input>
+                <Slider min={20} max={100} value={settings.size} onChange={(e) => setSettings({...settings, size: e})}></Slider>
             </Label>
             <button onClick={() => setData(cvService.reset())}>Reset Data</button>
             <button onClick={reactToPrint}>{tr.t("TO_PDF")}</button>
-            <Slider min={0} max={100} value={0} increment={5}></Slider>
         </div>
     </div>
 }

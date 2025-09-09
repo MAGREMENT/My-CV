@@ -116,6 +116,10 @@
     background-color: var(--primary);
 }
 
+.bg-primary-hover:hover {
+    background-color: var(--primary);
+}
+
 .bg-secondary {
     background-color: var(--secondary);
 }
@@ -132,6 +136,14 @@
     color: var(--text-on-color);
 }
 
+.text-on-color-hover:hover {
+    color: var(--text-on-color);
+}
+
+.text-align-center {
+    text-align: center;
+}
+
 .m-0 {
     margin: 0;
 }
@@ -146,6 +158,10 @@
 
 .-mt-30px {
     margin-top: -30px;
+}
+
+.ml-5px {
+    margin-left: 5px;
 }
 
 .ml-20px {
@@ -167,6 +183,10 @@
 .mlr-5px {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.p-5px {
+    padding: 5px;
 }
 
 .p-20px {
@@ -231,6 +251,10 @@
     border-color: var(--primary)
 }
 
+.border-1px {
+    border: solid 1px;
+}
+
 .border-b-1px {
     border-bottom: solid 1px;
 }
@@ -252,4 +276,24 @@
 .g-el-1-1 {
     grid-row: 1;
     grid-column: 1;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+.all-unset {
+    all: unset;
 }
