@@ -5,17 +5,17 @@ import { TranslationServiceContext } from '../../../core/services/TranslationSer
 
 function BottomInformation({icon, text}){
     return <div className="flex-row align-center">
-        <FontAwesomeIcon className='mr-5px fs-1-5rem' icon={icon}/>
+        <FontAwesomeIcon className='mr-5px fs-1-5em' icon={icon}/>
         <p className='m-0'>{text}</p>
     </div>
 }
 
 function CoreInformationContener({title, children, additionalCss}) {
     return <div className='flex-col w-full'>
-        <div className='w-full border-b-1px border-color-primary mb-10px'>
-            <p className='mt-0 ml-20px fs-1-5rem mb-5px'>{title}</p>
+        <div className='w-full border-b-1px border-color-primary mb-1em pl-2em pb-0-5em'>
+            <p className='mt-0 fs-1-5em mb-0'>{title}</p>
         </div>
-        <div className={'ml-20px pr-10px ' + additionalCss}>
+        <div className={'ml-2em pr-1em ' + additionalCss}>
             {children}
         </div>
     </div>
@@ -37,29 +37,32 @@ function CoreInformation({data}) {
             dateString += " - " + end.toLocaleDateString("fr-FR", dateOptions)
     }
 
-    return <div className='flex-col mb-10px'>
-        <p className='m-0 fs-650 fs-1-5rem'>{tr.t(data?.title)}</p>
+    return <div className='flex-col mb-1em'>
+        <p className='m-0 fs-650 fs-1-5em'>{tr.t(data?.title)}</p>
         <p className='m-0'>{`${tr.t(data?.establishment)} - ${tr.t(data?.location)}, ${tr.t(data?.country)} | ${dateString}`}</p>
-        <ul className='m-0'>
-            {feats.map((f, i) => <li key={i}>{tr.t(f)}</li>)}
-        </ul>
+        <div className='flex-col'>
+            {feats.map((f, i) => <div className='flex-row align-center'>
+                    <div className="cicle-0-3em bg-text flex-shrink-0 mlr-1em"></div>
+                    <p className='m-0' key={i}>{tr.t(f)}</p>
+                </div>)}
+        </div>
     </div>
 }
 
-function SkillDisplay({skill}) {
+function SkillDisplay({skill, isLast}) {
     const barStyle = {
         width: skill.value + "%"
     }
 
-    return <div className='flex-col mr-20px mb-20px'>
+    return <div className={'flex-col mr-2em ' + (isLast ? "" : "mb-1em")}>
         <p className='m-0 mb-5px'>{skill.name}</p>
-        <div className='w-full h-30px bg'>
+        <div className='w-full h-2-5em bg'>
             <div style={barStyle} className='h-full bg-secondary'></div>
         </div>
     </div>
 }
 
-export default function SquareRegionCVLayout({data, settings}) {
+export default function SquaredCVLayout({data, settings}) {
     let tr = useContext(TranslationServiceContext); 
 
     let experiences = data?.experience ?? [];
@@ -70,9 +73,9 @@ export default function SquareRegionCVLayout({data, settings}) {
     return <div className="full-size flex-col">
         <div className='flex-grow flex-row'>
             <div className='flex-col w-45per flex-shrink-0'>
-                <div className='bg-secondary h-70px'></div>
+                <div className='bg-secondary h-5em'></div>
                 <div className='flex-grow flex-col bg-primary text-on-color'>
-                    <div className='w-full plr-20px -mt-30px'>
+                    <div className='w-full plr-2em -mt-3em'>
                         <img className='w-full' src="/assets/random.jpg" alt="profile"></img>
                     </div>
                     <div className="flex-col h-full justify-around">
@@ -80,7 +83,7 @@ export default function SquareRegionCVLayout({data, settings}) {
                             {tr.t(data?.introduction)}
                         </CoreInformationContener>
                         <CoreInformationContener title={tr.t("SKILLS")} additionalCss="grid-2cols">
-                            {skills.map((s, i) => <SkillDisplay skill={s} key={i}/>)}
+                            {skills.map((s, i) => <SkillDisplay skill={s} key={i} isLast={i >= skills.length - 2}/>)}
                         </CoreInformationContener>
                         <CoreInformationContener title={tr.t("LANGUAGES")}>
                             {languages.map((l, i) => {
@@ -89,17 +92,17 @@ export default function SquareRegionCVLayout({data, settings}) {
                                 else if(l.value > 70) value = "ADVANCED";
                                 else if(l.value > 40) value = "INTERMEDIATE";
 
-                                return <p key={i} className='m-0 mb-5px'>{tr.t(l.name) + " : " + tr.t(value)}</p>
+                                return <p key={i} className='m-0 mb-0-5em'>{tr.t(l.name) + " : " + tr.t(value)}</p>
                             })}
                         </CoreInformationContener>
                     </div>
                 </div>
             </div>
             <div className='flex-col flex-grow'>
-                <div className='bg-secondary pt-30px plr-20px pb-20px w-full'>
-                    <p className='m-0 fs-2-5rem fw-650'>{data?.firstname}</p>
-                    <p className='m-0 fs-2-5rem fw-650'>{data?.surname}</p>
-                    <p className='m-0 fs-1-5rem'>{tr.t(data?.title)}</p>
+                <div className='bg-secondary plr-2em ptb-2em w-full'>
+                    <p className='m-0 fs-2-5em fw-650'>{data?.firstname}</p>
+                    <p className='m-0 fs-2-5em fw-650'>{data?.surname}</p>
+                    <p className='m-0 fs-1-5em'>{tr.t(data?.title)}</p>
                 </div>
                 <div className="flex-grow flex-col justify-around">
                     <CoreInformationContener title={tr.t("EDUCATION")}>
@@ -111,7 +114,7 @@ export default function SquareRegionCVLayout({data, settings}) {
                 </div>
             </div>
         </div>
-        <div className="flex-row flex-shrink-0 align-center justify-around bg-secondary ptb-20px">
+        <div className="flex-row flex-shrink-0 align-center justify-around bg-secondary ptb-2em">
             <BottomInformation icon={faPhone} text={data?.phone}/>
             <BottomInformation icon={faEnvelope} text={data?.mail}/>
             <BottomInformation icon={faLocationDot} text={data?.location + ", " + tr.t(data?.country) }/>

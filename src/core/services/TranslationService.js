@@ -3,12 +3,19 @@ import enT from '../../data/translations-en.json'
 import { getOrInitFromLocalStorage } from '../util';
 import { createContext } from 'react';
 
-const languages = ["fr", "en"];
+const languages = [{
+        key: "fr-FR",
+        name: "FRENCH"
+    },
+    {
+        key: "en-GB",
+        name: "ENGLISH"
+    }];
 
 function getLanguageData(lang) {
     switch(lang) {
-        case "fr" : return frT;
-        case "en" : return enT;
+        case "fr-FR" : return frT;
+        case "en-GB" : return enT;
         default: return null;
     }
 }
@@ -18,13 +25,13 @@ const LangKey = "Lang-Key";
 export class TranslationService {
     constructor(){
         this.data = {}
-        this.lang = getOrInitFromLocalStorage(LangKey, "en");
+        this.lang = getOrInitFromLocalStorage(LangKey, "en-GB");
 
         this.setLanguage(this.lang);
     }
 
     setLanguage(lang) {
-        if(!languages.includes(lang)) return;
+        if(!languages.find(l => l.key === lang)) return;
 
         let data = this.data[lang];
         if(data) {
@@ -37,6 +44,7 @@ export class TranslationService {
 
         this.data[lang] = data;
         this.lang = lang;
+        localStorage.setItem(LangKey, JSON.stringify(lang));
     }
 
     getLanguage() {
@@ -45,6 +53,10 @@ export class TranslationService {
 
     t(key, defaultValue = "") {
         return this.data[this.lang]?.[key] ?? defaultValue;
+    }
+
+    getAvailableLanguages() {
+        return new Promise(r => r(languages))
     }
 }
 

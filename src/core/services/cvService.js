@@ -1,10 +1,19 @@
 import defaultData from '../../data/default-cv-data.json'
 import { getOrInitFromLocalStorage } from '../util';
 import { createContext } from 'react';
+import SquaredCVLayout from '../../components/cv-layouts/SquaredCVLayout/SquaredCVLayout';
 
 const CVDataKey = "CV-Data-Key";
 
 const fonts = ["Poppins", "Finlandica"]
+const layouts = [
+  {
+    name: "Squared",
+    create: (data, settings) => <SquaredCVLayout data={data} settings={settings}/>,
+    preferredFont: "Finlandica",
+    heightToFontSizeRatio : 13 / 880
+  }
+]
 
 export class CVService {
     constructor() {
@@ -18,13 +27,15 @@ export class CVService {
     }
 
     getData() {
-        return new Promise((resolve, reject) => {
-            resolve(this.data);
-        })
+        return new Promise((resolve) => resolve(this.data))
     }
 
     getFonts() {
-      return fonts;
+        return new Promise((resolve) => resolve(fonts))
+    }
+
+    getLayouts() {
+      return new Promise(r => r(layouts));
     }
 }
 
