@@ -3,9 +3,10 @@ import { getOrInitFromLocalStorage } from '../util';
 import { createContext } from 'react';
 import SquaredCVLayout from '../../components/cv-layouts/SquaredCVLayout/SquaredCVLayout';
 
+const keepDataInLocal = false;
 const CVDataKey = "CV-Data-Key";
 
-const fonts = ["Poppins", "Finlandica"]
+const fonts = ["Poppins", "Finlandica", "DM Serif Text", "Tinos"]
 const layouts = [
   {
     name: "Squared",
@@ -17,7 +18,7 @@ const layouts = [
 
 export class CVService {
     constructor() {
-        this.data = getOrInitFromLocalStorage(CVDataKey, defaultData)
+        this.data = keepDataInLocal ? getOrInitFromLocalStorage(CVDataKey, defaultData) : defaultData;
     }
 
     reset() {

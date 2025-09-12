@@ -17,3 +17,13 @@ export function countNumberOfCharactersFromNumber(n) {
 
     return count;
 }
+
+//https://stackoverflow.com/questions/3916191/download-data-url-file
+export function downloadURI(uri, name) {
+  var link = document.createElement("a");
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

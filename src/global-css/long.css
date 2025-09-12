@@ -10,13 +10,13 @@
     cursor: pointer;
 }
 
-.cicle-0-5em {
+.circle-0-5em {
     height: 0.5em;
     width: 0.5em;
     border-radius: 100%;
 }
 
-.cicle-0-3em {
+.circle-0-3em {
     height: 0.3em;
     width: 0.3em;
     border-radius: 100%;

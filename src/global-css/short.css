@@ -48,6 +48,10 @@
     height: 2.5em;
 }
 
+.h-1-5em {
+    height: 1.5em;
+}
+
 .h-30px {
     height: 30px;
 }
@@ -148,12 +152,24 @@
     background-color: var(--secondary);
 }
 
+.bg-tertiary {
+    background-color: var(--tertiary);
+}
+
 .bg {
     background-color: var(--background);
 }
 
 .text {
     color: var(--text);
+}
+
+.text-primary {
+    color: var(--primary)
+}
+
+.text-tertiary {
+    color: var(--tertiary)
 }
 
 .text-on-color {
@@ -174,6 +190,10 @@
 
 .mt-0 {
     margin-top: 0;
+}
+
+.mt-0-4em {
+    margin-top: 0.4em;
 }
 
 .mt-10px {
@@ -228,6 +248,10 @@
     margin-bottom: 1em;
 }
 
+.mb-0-5em {
+    margin-bottom: 0.5em;
+}
+
 .mb-2em{
     margin-bottom: 2em;
 }
@@ -280,6 +304,14 @@
     padding-top: 30px;
 }
 
+.pt-0-2em {
+    padding-top: 0.2em;
+}
+
+.pt-0-5em {
+    padding-top: 0.5em;
+}
+
 .pl-1em {
     padding-left: 1em;
 }
@@ -298,6 +330,10 @@
 
 .pb-0-5em {
     padding-bottom: 0.5em;
+}
+
+.pb-0-2em {
+    padding-bottom: 0.2em;
 }
 
 .pb-20px {
@@ -340,6 +376,10 @@
     font-size: 1.5rem;
 }
 
+.fs-1-25rem {
+    font-size: 1.25rem;
+}
+
 .fs-2rem {
     font-size: 2rem;
 }
@@ -354,6 +394,10 @@
 
 .fs-1-5em {
     font-size: 1.5em;
+}
+
+.fs-1-25em {
+    font-size: 1.25em;
 }
 
 .fs-2em {
@@ -374,6 +418,22 @@
 
 .fw-650 {
     font-weight: 650;
+}
+
+.fw-550 {
+    font-weight: 550;
+}
+
+.fw-450 {
+    font-weight: 450;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.italic {
+    font-style: italic;
 }
 
 .border-color-primary {
