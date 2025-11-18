@@ -9,6 +9,7 @@ import Slider from '../../components/inputs/Slider/Slider';
 import Select from '../../components/inputs/Select/Select';
 import { toPng } from 'html-to-image';
 import { downloadURI } from '../../core/util';
+import jsPDF from "jspdf";
 
 const containerPadding = 20;
 const widthToHeightRatio = 297 / 210;
@@ -74,11 +75,30 @@ export default function CV() {
         setLang(tr.getLanguage());
     }
 
-    const handleDownload = () => {
+    const handlePNGDownload = () => {
         if(!pdfRef.current) return;
 
         toPng(pdfRef.current).then(dataUrl => {
             downloadURI(dataUrl, "cv")
+        })
+    }
+
+    const handlePDFDownload = () => {
+        if(!pdfRef.current) return;
+
+        toPng(pdfRef.current).then(dataUrl => {
+            const pdf = new jsPDF({
+                orientation: "portrait",
+                unit: "pt",
+                format: "a4",
+            });
+
+            const imgProps = pdf.getImageProperties(dataUrl);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+            pdf.save("cv.pdf");
         })
     }
 
@@ -107,7 +127,8 @@ export default function CV() {
             <Label text={tr.t("SIZE")}>
                 <Slider min={360} max={maxCvHeight} increment={1} value={settings.size} onChange={(e) => setSettings({...settings, size: e})}></Slider>
             </Label>
-            <button className='basic-button' onClick={handleDownload}>{tr.t("TO_PNG")}</button>
+            <button className='basic-button mb-10px' onClick={handlePNGDownload}>{tr.t("TO_PNG")}</button>
+            <button className='basic-button' onClick={handlePDFDownload}>{tr.t("TO_PDF")}</button>
         </div>
     </div>;
 }

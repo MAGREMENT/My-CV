@@ -31,17 +31,17 @@ function CoreInformation({data}) {
     if(data) {
         const start = new Date(data.start);
         const end = new Date(data.end);
-        dateString = start.toLocaleDateString("fr-FR", dateOptions);
+        dateString = start.toLocaleDateString(tr.getLanguage(), dateOptions);
 
         if(start.getMonth() !== end.getMonth || start.getFullYear() !== end.getFullYear()) 
-            dateString += " - " + end.toLocaleDateString("fr-FR", dateOptions)
+            dateString += " - " + end.toLocaleDateString(tr.getLanguage(), dateOptions)
     }
 
     return <div className='flex-col mb-1em'>
         <p className='m-0 fw-550 fs-1-25em'>{tr.t(data?.title)}</p>
         <p className='m-0 italic mb-0-5em'>{`${tr.t(data?.establishment)} - ${tr.t(data?.location)}, ${tr.t(data?.country)} | ${dateString}`}</p>
         <div className='flex-col'>
-            {feats.map((f, i) => <div className='flex-row'>
+            {feats.map((f, i) => <div className='flex-row' key={i}>
                     <div className="circle-0-3em mt-0-4em bg-tertiary flex-shrink-0 mlr-1em"></div>
                     <p className='m-0' key={i}>{tr.t(f)}</p>
                 </div>)}
@@ -124,7 +124,7 @@ export default function SquaredCVLayout({data, settings}) {
                     <CoreInformationContener title={tr.t("WORK_EXPERIENCE")}>
                         {experiences.map((e, i) => <CoreInformation key={i} data={e}/>)}
                     </CoreInformationContener>
-                    <CoreInformationContener title={tr.t("PERSONNAL_PEROJECTS")}>
+                    <CoreInformationContener title={tr.t("PERSONAL_PEROJECTS")}>
                         {projects.map((e, i) => <PersonnalProject key={i} project={e}/>)}
                     </CoreInformationContener>
                 </div>
